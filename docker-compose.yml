@@ -1,0 +1,20 @@
+version: '3.1'
+
+services:
+  application:
+    build: .
+    image: application
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongodb
+  mongodb:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: production
+      MONGO_INITDB_ROOT_PASSWORD: production
+    volumes:
+      - mongodb_data:/data/db # /data/db is path of docker container, which contain database and the
+volumes:
+  mongodb_data:
+
